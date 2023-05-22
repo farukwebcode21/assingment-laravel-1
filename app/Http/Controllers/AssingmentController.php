@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class AssingmentController extends Controller
@@ -36,5 +37,27 @@ class AssingmentController extends Controller
                 "age"=>25
                 ]
             ];
+    }
+
+    function uploadPhot(Request $request){
+        $photo = $request->file('avata');
+        $photo->move(public_path('uploads'), $photo->getClientOriginalName());
+        return 1;
+    }
+
+    function  sendRemberToken(Request $request){
+        $rememberToken = $request->cookie('remember_token');
+        if(!$rememberToken){
+            $rememberToken = null;
+        }
+
+    }
+    function postEmail(Request $request, $email){
+        $responseData =$request->input($email);
+        // $responseData =[
+        //     'success' =>true,
+        //     'message' => 'Form submitted successfully.'
+        // ];
+        return $responseData;
     }
 }

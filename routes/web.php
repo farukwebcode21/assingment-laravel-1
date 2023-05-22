@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/submit/{name}',[AssingmentController::class, 'postUserName']); 
+Route::post('/submit/{email}',[AssingmentController::class, 'postEmail']); 
